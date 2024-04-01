@@ -1,11 +1,13 @@
 name: kukathon_F CI with Gradle
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
     steps:
       ## jdk setting
