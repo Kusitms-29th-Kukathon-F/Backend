@@ -5,8 +5,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    runs-on: ubuntu-20.04
+  ci:
+    runs-on: ubuntu-latest
     steps:
       ## jdk setting
       - uses: actions/checkout@v3
@@ -40,7 +40,9 @@ jobs:
       - name: gradle build 중입니다.
         run: ./gradlew build
         shell: bash
-
+  cd:
+    runs-on: ubuntu-latest
+    steps:
       - name: docker image build 후 docker hub에 push합니다.
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
