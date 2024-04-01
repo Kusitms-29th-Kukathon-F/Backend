@@ -1,11 +1,11 @@
-name: kukathon_F CI with Gradle
+name: kukathon_F CI/CD with Gradle
 
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
     steps:
       ## jdk setting
@@ -40,3 +40,25 @@ jobs:
       - name: gradle build 중입니다.
         run: ./gradlew build
         shell: bash
+  cd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: docker image build 후 docker hub에 push합니다.
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -f Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/kukathonf .
+          docker push ${{ secrets.DOCKER_USERNAME }}/kukathonf
+
+      ## deploy to production
+      - name:  docker hub에서 pull 후 deploy합니다.
+        uses: appleboy/ssh-action@master
+        with:
+          username: ${{ secrets.EC2_USERNAME }}
+          host: ${{ secrets.EC2_HOST }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          envs: GITHUB_SHA
+          script: |
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/kukathonf
+            sudo docker stop $(sudo docker ps -q) 2>/dev/null || true
+            sudo docker run --rm -d -p 80:8080 ${{ secrets.DOCKER_USERNAME }}/kukathof
+            sudo docker system prune -f
