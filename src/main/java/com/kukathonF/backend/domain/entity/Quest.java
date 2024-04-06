@@ -40,6 +40,8 @@ public class Quest {
 
     private Long runningTime;
 
+    private int ago;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     User user;

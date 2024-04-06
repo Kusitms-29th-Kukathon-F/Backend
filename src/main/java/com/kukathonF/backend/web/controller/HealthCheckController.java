@@ -11,11 +11,13 @@ import com.kukathonF.backend.domain.repository.GiftBoxRepository;
 import com.kukathonF.backend.domain.repository.ItemRepository;
 import com.kukathonF.backend.domain.repository.QuestRepository;
 import com.kukathonF.backend.domain.repository.UserRepository;
+import com.kukathonF.backend.domain.entity.User;
 import com.kukathonF.backend.global.common.SuccessResponse;
 import java.time.LocalDate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -140,5 +142,9 @@ public class HealthCheckController {
         questRepository.save(questA);
         questRepository.save(questB);
         questRepository.save(questC);
+    }
+    @GetMapping("/username")
+    public String test(@AuthenticationPrincipal User user){
+        return user.getName();
     }
 }
