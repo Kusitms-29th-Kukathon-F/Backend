@@ -1,5 +1,6 @@
 package com.kukathonF.backend.global.config;
 
+import com.kukathonF.backend.global.security.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -35,7 +38,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
+        http
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
@@ -43,7 +46,11 @@ public class SecurityConfig {
                         sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry.anyRequest().authenticated())
-                .addFilter(corsConfig.corsFilter())
-                .build();
+                .addFilter(corsConfig.corsFilter());
+        http
+                .addFilterBefore(new JwtAuthenticationFilter()
+                        , UsernamePasswordAuthenticationFilter.class);
+        return http.build();
+
     }
 }
