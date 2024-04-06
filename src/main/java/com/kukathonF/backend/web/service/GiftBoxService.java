@@ -16,7 +16,7 @@ public class GiftBoxService {
 
     @Transactional(readOnly = true)
     public List<ItemResponse> getOpenItemsInGiftBox(Long userId) {
-        List<GiftBox> findGiftBoxes = giftBoxRepository.findByUserIdAndIsOpenTrue(userId);
+        List<GiftBox> findGiftBoxes = giftBoxRepository.findByUserIdAndItemIsOpenTrue(userId);
 
         List<Item> findItems = findGiftBoxes.stream().map(GiftBox::getItem).toList();
 
@@ -25,7 +25,7 @@ public class GiftBoxService {
 
     @Transactional(readOnly = true)
     public List<ItemResponse> getNotOpenItemsInGiftBox(Long userId) {
-        List<GiftBox> findGiftBoxes = giftBoxRepository.findByUserIdAndIsOpenFalse(userId);
+        List<GiftBox> findGiftBoxes = giftBoxRepository.findByUserIdAndItemIsOpenFalse(userId);
 
         List<Item> findItems = findGiftBoxes.stream().map(GiftBox::getItem).toList();
 

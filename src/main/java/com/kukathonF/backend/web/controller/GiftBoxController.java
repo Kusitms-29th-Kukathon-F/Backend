@@ -35,8 +35,8 @@ public class GiftBoxController {
     public ResponseEntity<SuccessResponse<?>> getItemsInGiftBox(@PathVariable("userId") Long userId,
                                                                        @RequestParam("open") String open) {
         if ("true".equals(open)) {
-            giftBoxService.getOpenItemsInGiftBox(userId);
-            return SuccessResponse.ok(null);
+            List<ItemResponse> findItems = giftBoxService.getOpenItemsInGiftBox(userId);
+            return SuccessResponse.ok(findItems);
         }
 
         List<ItemResponse> findItems = giftBoxService.getNotOpenItemsInGiftBox(userId);
