@@ -9,7 +9,7 @@ VALUES
     (7,'시연'),
     (8,'민영'),
     (9,'현정');
-INSERT INTO RUNNING_TIME (id, user_id, running_time,app,date)
+INSERT INTO kukathonfrds.RUNNING_TIME (id, user_id, running_time,app,date)
 VALUES
     (1,1,3600000,'INSTAGRAM','2024-04-06'),
     (2,1,9000000,'YOUTUBE','2024-04-06'),
@@ -37,7 +37,7 @@ VALUES
     (22,8,2700000,'YOUTUBE','2024-04-05'),
     (23,9,1000000,'YOUTUBE','2024-04-05');
 
-INSERT INTO DOPAMIN_SCORE (id, user_id, day_score, week_score)
+INSERT INTO kukathonfrds.DOPAMIN_SCORE (id, user_id, day_score, week_score)
 VALUES
     (1,1,70,30),
     (2,2,80,20),
@@ -49,7 +49,7 @@ VALUES
     (8,8,55,45),
     (9,9,85,10);
 
-INSERT INTO QUEST (id,user_id,app,running_time,message,is_success,ago,date)
+INSERT INTO kukathonfrds.QUEST (id,user_id,app,running_time,message,is_success,ago,date)
 VALUES
     (1,1,'YOUTUBE',7200000,'유튜브를 2시간 전으로 사용해보세요',false,0,'2024-04-07'),
     (2,1,'INSTAGRAM',1800000,'인스타그램을 30분 전으로 사용해보세요',true,1,'2024-04-06'),
@@ -59,7 +59,7 @@ VALUES
     (6,1,'TWITTER',2400000,'X를 40분 전으로 사용해보세요',true,5,'2024-04-02'),
     (7,1,'INSTAGRAM',2400000,'인스타그램을 40분 전으로 사용해보세요',true,6,'2024-04-01');
 
-INSERT INTO ITEM (id, name, grade,is_open)
+INSERT INTO kukathonfrds.ITEM (id, name, grade,is_open)
 VALUES
     (1,'shovel','COMMON',false),
     (2,'shovel','NORMAL',false),
@@ -81,7 +81,7 @@ VALUES
     (14,'shoes','NORMAL',true),
     (15,'shoes','RARE',false);
 
-INSERT INTO GIFT_BOX (id,item_id,user_id,is_open,period)
+INSERT INTO kukathonfrds.GIFT_BOX (id,item_id,user_id,is_open,period)
 values
     (1,4,1,false,'day'),
     (2,13,1,false,'week');
