@@ -24,6 +24,7 @@ public class DopaminScore {
     private Long id;
 
     private Long score;
+
     private LocalDateTime date;
 
     @ManyToOne(fetch = LAZY)
