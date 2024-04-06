@@ -1,4 +1,4 @@
-package com.kukathonF.backend;
+package com.kukathonF.backend.domain.controller;
 
 import com.kukathonF.backend.global.common.SuccessResponse;
 import org.springframework.http.ResponseEntity;
