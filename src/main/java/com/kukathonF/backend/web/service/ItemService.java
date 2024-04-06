@@ -14,9 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ItemService {
     private final GiftBoxRepository giftBoxRepository;
+    private final ItemRepository itemRepository;
+
     @Transactional(readOnly = true)
     public List<ItemResponse> findUserItems(Long userId) {
         List<GiftBox> findGiftBoxes = giftBoxRepository.findByUserId(userId);
+        List<Item> allItems = itemRepository.findAll();
+
+
+
         List<Item> findItems = findGiftBoxes.stream().map(GiftBox::getItem).toList();
 
         return ItemResponse.ofList(findItems);
