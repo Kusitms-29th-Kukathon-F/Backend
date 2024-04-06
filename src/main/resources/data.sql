@@ -1,4 +1,4 @@
-INSERT INTO USER (id, name)
+INSERT INTO kukathonfrds.USER (id, name)
 VALUES
     (1,'소민'),
     (2,'민혜'),
