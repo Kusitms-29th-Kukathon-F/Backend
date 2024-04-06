@@ -4,9 +4,11 @@ import com.kukathonF.backend.domain.entity.constant.App;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
@@ -31,4 +33,9 @@ public class Quest {
     private Long runningTime;
 
     private LocalDateTime date;
+
+    private boolean isSuccess;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    User user;
 }
