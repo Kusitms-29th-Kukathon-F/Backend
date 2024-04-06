@@ -1,7 +1,10 @@
 package com.kukathonF.backend.domain.entity;
 
+import com.kukathonF.backend.domain.entity.constant.Grade;
 import com.kukathonF.backend.global.common.BaseTimeEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,4 +23,7 @@ public class Item extends BaseTimeEntity {
     private Long id;
 
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private Grade grade;
 }
