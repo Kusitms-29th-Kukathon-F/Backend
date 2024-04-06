@@ -25,124 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class HealthCheckController {
 
-    private final GiftBoxRepository giftBoxRepository;
-    private final UserRepository userRepository;
-    private final ItemRepository itemRepository;
-    private final QuestRepository questRepository;
-
     @GetMapping("/")
     public ResponseEntity<SuccessResponse<?>> healthCheck() {
 
         return SuccessResponse.ok("health check");
     }
 
-    @GetMapping("api/set-data")
-    @Transactional
-    public void setData() {
-        User userA = User.builder()
-                .name("userA")
-                .build();
-
-        User userB = User.builder()
-                .name("userB")
-                .build();
-
-        userRepository.save(userA);
-        userRepository.save(userB);
-
-        Item itemA = Item.builder()
-                .name("itemA")
-                .isOpen(false)
-                .isOpen(false)
-                .grade(Grade.NORMAL)
-                .build();
-
-        Item itemB = Item.builder()
-                .name("itemB")
-                .isOpen(true)
-                .isOpen(false)
-                .grade(Grade.COMMON)
-                .build();
-
-        Item itemC = Item.builder()
-                .name("itemC")
-                .isOpen(false)
-                .isOpen(true)
-                .grade(Grade.RARE)
-                .build();
-
-        itemRepository.save(itemA);
-        itemRepository.save(itemB);
-        itemRepository.save(itemC);
-
-        GiftBox giftBoxA = GiftBox.builder()
-                .period(Period.DAY)
-                .isOpen(false)
-                .user(userA)
-                .item(itemA)
-                .build();
-
-        GiftBox giftBoxB = GiftBox.builder()
-                .period(Period.DAY)
-                .isOpen(true)
-                .user(userB)
-                .item(itemB)
-                .build();
-
-        GiftBox giftBoxC = GiftBox.builder()
-                .period(Period.WEEK)
-                .isOpen(false)
-                .user(userA)
-                .item(itemC)
-                .build();
-
-        GiftBox giftBoxD = GiftBox.builder()
-                .period(Period.WEEK)
-                .isOpen(true)
-                .user(userA)
-                .item(itemC)
-                .build();
-
-        giftBoxRepository.save(giftBoxA);
-        giftBoxRepository.save(giftBoxB);
-        giftBoxRepository.save(giftBoxC);
-        giftBoxRepository.save(giftBoxD);
-
-        Quest questA = Quest.builder()
-                .ago(1L)
-                .message("aaa")
-                .isSuccess(false)
-                .user(userA)
-                .app(App.INSTAGRAM)
-                .runningTime(3L)
-                .date(LocalDate.now())
-                .build();
-
-        LocalDate agoDate = LocalDate.of(2024, 3, 30);
-        Quest questB = Quest.builder()
-                .ago(2L)
-                .message("bbb")
-                .isSuccess(true)
-                .user(userA)
-                .app(App.TWITTER)
-                .runningTime(8L)
-                .date(agoDate)
-                .build();
-
-        Quest questC = Quest.builder()
-                .ago(3L)
-                .message("c")
-                .isSuccess(false)
-                .user(userA)
-                .app(App.INSTAGRAM)
-                .runningTime(5L)
-                .date(LocalDate.now())
-                .build();
-
-        questRepository.save(questA);
-        questRepository.save(questB);
-        questRepository.save(questC);
-    }
     @GetMapping("/username")
     public String test(@AuthenticationPrincipal User user){
         return user.getName();
