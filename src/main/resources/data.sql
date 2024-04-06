@@ -37,7 +37,7 @@ VALUES
     (22,8,2700000,'YOUTUBE','2024-04-05'),
     (23,9,1000000,'YOUTUBE','2024-04-05');
 
-INSERT INTO kukathonfrds.dopamain_score (id, user_id, day_score, week_score)
+INSERT INTO kukathonfrds.dopamin_score (id, user_id, day_score, week_score)
 VALUES
     (1,1,70,30),
     (2,2,80,20),
