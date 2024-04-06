@@ -27,11 +27,6 @@ public class Quest {
 
     private String message;
 
-    @Enumerated(EnumType.STRING)
-    private App app;
-
-    private Long runningTime;
-
     private LocalDateTime date;
 
     private boolean isSuccess;
