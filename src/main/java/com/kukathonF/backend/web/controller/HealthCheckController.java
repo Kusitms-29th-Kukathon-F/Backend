@@ -12,5 +12,6 @@ public class HealthCheckController {
     public ResponseEntity<SuccessResponse<?>> healthCheck() {
 
         return SuccessResponse.ok("health check");
+
     }
 }
