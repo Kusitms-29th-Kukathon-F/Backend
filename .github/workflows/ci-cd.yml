@@ -58,6 +58,6 @@ jobs:
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/kukathof:latest
             sudo docker stop $(sudo docker ps -q) 2>/dev/null || true
-            sudo docker run --rm -d -p 80:8080 ${{ secrets.DOCKER_USERNAME }}/kukathonf:latest
+            sudo docker run --rm -d -p 80:8080 --name kukathonf-server ${{ secrets.DOCKER_USERNAME }}/kukathonf:latest
             sudo docker system prune -f
  
