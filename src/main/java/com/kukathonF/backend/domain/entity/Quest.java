@@ -1,5 +1,6 @@
 package com.kukathonF.backend.domain.entity;
 
+import com.kukathonF.backend.domain.entity.constant.App;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +27,10 @@ public class Quest {
     private LocalDate date;
 
     private boolean isSuccess;
+
+    private App app;
+
+    private Long runningTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     User user;
