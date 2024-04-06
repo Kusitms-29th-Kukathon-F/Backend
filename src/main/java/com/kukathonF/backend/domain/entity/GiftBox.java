@@ -3,7 +3,6 @@ package com.kukathonF.backend.domain.entity;
 import static jakarta.persistence.FetchType.*;
 
 import com.kukathonF.backend.domain.entity.constant.Period;
-import com.kukathonF.backend.global.common.BaseTimeEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -20,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class GiftBox extends BaseTimeEntity {
+public class GiftBox {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
