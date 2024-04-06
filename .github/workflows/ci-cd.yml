@@ -57,7 +57,8 @@ jobs:
           envs: GITHUB_SHA
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/kukathonf:latest
-            sudo docker stop $(sudo docker ps -q) 2>/dev/null || true
-            sudo docker run --rm -d -p 80:8080 --name kukathonf-server ${{ secrets.DOCKER_USERNAME }}/kukathonf:latest
+            sudo docker stop kukathonf-server
+            sudo docker rm -f kukathonf-server
+            sudo docker run -d -p 80:8080 --name kukathonf-server ${{ secrets.DOCKER_USERNAME }}/kukathonf:latest
             sudo docker system prune -f
  
