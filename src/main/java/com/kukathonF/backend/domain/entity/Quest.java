@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
-
 import lombok.*;
 
 @Entity
@@ -30,12 +29,12 @@ public class Quest {
 
     private boolean isSuccess;
 
+    private Long ago;
+
     @Enumerated(EnumType.STRING)
     private App app;
 
     private Long runningTime;
-
-    private int ago;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
