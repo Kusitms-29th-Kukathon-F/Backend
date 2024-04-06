@@ -1,0 +1,34 @@
+package com.kukathonF.backend.web.service;
+
+import com.kukathonF.backend.domain.entity.GiftBox;
+import com.kukathonF.backend.domain.entity.Item;
+import com.kukathonF.backend.domain.repository.GiftBoxRepository;
+import com.kukathonF.backend.web.dto.ItemResponse;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@RequiredArgsConstructor
+public class GiftBoxService {
+    private final GiftBoxRepository giftBoxRepository;
+
+    @Transactional(readOnly = true)
+    public List<ItemResponse> getOpenItemsInGiftBox(Long userId) {
+        List<GiftBox> findGiftBoxes = giftBoxRepository.findByUserIdAndIsOpenTrue(userId);
+
+        List<Item> findItems = findGiftBoxes.stream().map(GiftBox::getItem).toList();
+
+        return ItemResponse.ofList(findItems);
+    }
+
+    @Transactional(readOnly = true)
+    public List<ItemResponse> getNotOpenItemsInGiftBox(Long userId) {
+        List<GiftBox> findGiftBoxes = giftBoxRepository.findByUserIdAndIsOpenFalse(userId);
+
+        List<Item> findItems = findGiftBoxes.stream().map(GiftBox::getItem).toList();
+
+        return ItemResponse.ofList(findItems);
+    }
+}
