@@ -23,9 +23,9 @@ public class DopaminScore {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long score;
+    private Long dayScore;
 
-    private LocalDate date;
+    private Long weekScore;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")

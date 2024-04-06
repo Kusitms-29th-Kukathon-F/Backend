@@ -23,6 +23,8 @@ public class Item {
 
     private String name;
 
+    private boolean isOpen;
+
     @Enumerated(EnumType.STRING)
     private Grade grade;
 }
