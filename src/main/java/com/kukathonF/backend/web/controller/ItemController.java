@@ -19,11 +19,11 @@ public class ItemController {
 
     private final ItemService itemService;
 
-//    @GetMapping("/users/{userId}/items")
-//    public ResponseEntity<SuccessResponse<?>> getItems(@PathVariable("userId") Long userId) {
-//        List<ItemResponse> findItems = itemService.findUserItems(userId);
-//
-//        return SuccessResponse.ok(findItems);
-//    }
+    @GetMapping("/users/{userId}/items")
+    public ResponseEntity<SuccessResponse<?>> getItems(@PathVariable("userId") Long userId) {
+        List<ItemResponse> findItems = itemService.findUserItems(userId);
+
+        return SuccessResponse.ok(findItems);
+    }
 
 }
